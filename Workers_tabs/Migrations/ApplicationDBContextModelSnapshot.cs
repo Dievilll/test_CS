@@ -87,11 +87,11 @@ namespace Workers_tabs.Migrations
 
             modelBuilder.Entity("Workers_tabs.Models.Comment", b =>
                 {
-                    b.HasOne("Workers_tabs.Models.Def", "Base")
+                    b.HasOne("Workers_tabs.Models.Def", "Def")
                         .WithMany("Comments")
                         .HasForeignKey("DefId");
 
-                    b.Navigation("Base");
+                    b.Navigation("Def");
                 });
 
             modelBuilder.Entity("Workers_tabs.Models.Def", b =>

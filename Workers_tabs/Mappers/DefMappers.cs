@@ -19,7 +19,8 @@ namespace Workers_tabs.Mappers
                 Purchase = defmodel.Purchase,
                 LastDiv = defmodel.LastDiv,
                 Industry = defmodel.Industry,
-                MarketCap = defmodel.MarketCap
+                MarketCap = defmodel.MarketCap,
+                Comments = defmodel.Comments.Select(x => x.ToCommentDto()).ToList()
             };
         }
 

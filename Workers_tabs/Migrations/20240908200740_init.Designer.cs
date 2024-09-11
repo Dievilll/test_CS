@@ -12,7 +12,7 @@ using Workers_tabs.Data;
 namespace Workers_tabs.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20240904211137_init")]
+    [Migration("20240908200740_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -90,11 +90,11 @@ namespace Workers_tabs.Migrations
 
             modelBuilder.Entity("Workers_tabs.Models.Comment", b =>
                 {
-                    b.HasOne("Workers_tabs.Models.Def", "Base")
+                    b.HasOne("Workers_tabs.Models.Def", "Def")
                         .WithMany("Comments")
                         .HasForeignKey("DefId");
 
-                    b.Navigation("Base");
+                    b.Navigation("Def");
                 });
 
             modelBuilder.Entity("Workers_tabs.Models.Def", b =>

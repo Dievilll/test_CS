@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Workers_tabs.DTOs.Comment;
 
 namespace Workers_tabs.DTOs.Def
 {
@@ -17,5 +18,6 @@ namespace Workers_tabs.DTOs.Def
         public string Industry { get; set; } = string.Empty;
         public long MarketCap { get; set; }
         
+        public List<CommentDto> Comments { get; set; }
     }
 }

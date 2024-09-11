@@ -25,6 +25,11 @@ namespace Workers_tabs.Repository
             return defModel;
         }
 
+        public Task<bool> DefExists(int id)
+        {
+            return _context.Defs.AnyAsync(s => s.Id == id);
+        }
+
         public async Task<Def?> DeleteAsync(int id)
         {
             var defModel = await _context.Defs.FirstOrDefaultAsync(x => x.Id == id);
@@ -41,12 +46,12 @@ namespace Workers_tabs.Repository
 
         public async Task<List<Def>> GetAllAsync()
         {
-            return await _context.Defs.ToListAsync();
+            return await _context.Defs.Include(x => x.Comments).ToListAsync();
         }
 
         public async Task<Def?> GetByIdAsync(int id)
         {
-            return await _context.Defs.FindAsync(id);
+            return await _context.Defs.Include(x => x.Comments).FirstOrDefaultAsync(i => i.Id == id);
         }
 
         public async Task<Def?> UpdateAsync(int id, UpdateDefRequestDto defDto)

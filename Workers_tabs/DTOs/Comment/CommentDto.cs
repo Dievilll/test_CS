@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Workers_tabs.Models
+namespace Workers_tabs.DTOs.Comment
 {
-    public class Comment
+    public class CommentDto
     {
         public int Id { get; set; }
 
@@ -15,7 +15,5 @@ namespace Workers_tabs.Models
 
         public DateTime CreatedOn { get; set; } = DateTime.Now.ToUniversalTime(); // для postgresql только так, для MS SQL Server можно DateTime.Now
         public int? DefId { get; set; }
-
-        public Def? Def { get; set; }
     }
 }

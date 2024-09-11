@@ -14,5 +14,6 @@ namespace Workers_tabs.Interfaces
         Task<Def> CreateAsync(Def defModel);
         Task<Def?> UpdateAsync(int id, UpdateDefRequestDto updateDto);
         Task<Def?> DeleteAsync(int id);
+        Task<bool> DefExists(int id);
     }
 }
