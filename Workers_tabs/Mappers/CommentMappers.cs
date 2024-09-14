@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Workers_tabs.DTOs;
 using Workers_tabs.DTOs.Comment;
 using Workers_tabs.Models;
 
@@ -28,6 +29,15 @@ namespace Workers_tabs.Mappers
                 Title = commentDto.Title,
                 Content = commentDto.Content,
                 DefId = defId
+            };
+        }
+
+        public static Comment ToCommentFromUpdate(this UpdateCommentDto commentDto)
+        {
+            return new Comment
+            {
+                Title = commentDto.Title,
+                Content = commentDto.Content
             };
         }
     }

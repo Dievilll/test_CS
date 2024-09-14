@@ -7,6 +7,7 @@ using Workers_tabs.Data;
 using Workers_tabs.DTOs.Def;
 using Workers_tabs.Interfaces;
 using Workers_tabs.Models;
+using Workers_tabs.Queries;
 
 namespace Workers_tabs.Repository
 {
@@ -44,9 +45,29 @@ namespace Workers_tabs.Repository
             return defModel;
         }
 
-        public async Task<List<Def>> GetAllAsync()
+        public async Task<List<Def>> GetAllAsync(QueryObject query)
         {
-            return await _context.Defs.Include(x => x.Comments).ToListAsync();
+            var stocks = _context.Defs.Include(x => x.Comments).AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(query.CompanyName))
+            {
+                stocks = stocks.Where(x => x.CompanyName.Contains(query.CompanyName));
+            }
+
+            if(!string.IsNullOrWhiteSpace(query.Symbol))
+            {
+                stocks = stocks.Where(x => x.Symbol.Contains(query.Symbol));
+            }
+
+            if(!string.IsNullOrWhiteSpace(query.SortBy))
+            {
+                if(query.SortBy.Equals("Symbol", StringComparison.OrdinalIgnoreCase))
+                {
+                    stocks = query.IsDescending ? stocks.OrderByDescending(x => x.Symbol) : stocks.OrderBy(x => x.Symbol);
+                }
+            }
+
+            return await stocks.ToListAsync();
         }
 
         public async Task<Def?> GetByIdAsync(int id)
